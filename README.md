@@ -80,3 +80,7 @@ It can be useful to know when a client is online or offline. Firebase Realtime D
 | Realtime Database   | Cloud Firestore                                                                                                                                           |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Presence supported. | Not supported natively. You can leverage Realtime Database's support for presence by syncing Cloud Firestore and Realtime Database using Cloud Functions. |
+
+#### [Realtime and offline support](https://firebase.google.com/docs/database/rtdb-vs-firestore#realtime_and_offline_support)
+
+Both have mobile-first, realtime SDKs and both support local data storage for offline-ready apps.
