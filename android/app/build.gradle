@@ -1,5 +1,9 @@
 apply plugin: "com.android.application"
 
+// Firebase Start
+apply plugin: 'com.google.gms.google-services'
+// Firebase End
+
 import com.android.build.OutputFile
 
 /**
