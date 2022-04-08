@@ -65,8 +65,8 @@ const ChatList = ({navigation}) => {
   const checkChatExistence = async () => {
     const querySnapshot = await firestore()
       .collection('Chats')
-      .where('participants', 'array-contains', phoneNum && MY_PHONE_NUM)
       .where('type', '==', 'one-to-one')
+      .where('participants', '==', [phoneNum && MY_PHONE_NUM].sort())
       .get();
 
     if (querySnapshot.empty) {
@@ -77,7 +77,7 @@ const ChatList = ({navigation}) => {
       let docID = null;
       querySnapshot.forEach(documentSnapshot => {
         docID = documentSnapshot.id;
-        console.log(docID);
+        console.log('Document ID', docID);
       });
       return docID;
     }
@@ -87,11 +87,16 @@ const ChatList = ({navigation}) => {
     if (await checkUserExistence()) {
       const chatID = await checkChatExistence();
       if (chatID) {
+        console.log('Chat already exists...');
         navigation.navigate('ChatScreen', {chatID});
       } else {
+        console.log('Creating new chat...');
         const docRef = await firestore()
           .collection(`Chats`)
-          .add({participants: [MY_PHONE_NUM, phoneNum], type: 'one-to-one'});
+          .add({
+            participants: [MY_PHONE_NUM, phoneNum].sort(),
+            type: 'one-to-one',
+          });
 
         navigation.navigate('ChatScreen', {chatID: docRef.id});
       }

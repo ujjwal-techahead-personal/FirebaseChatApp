@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import {hpx, wp, wpx} from '../constants/constants';
+import {hpx, nf, wp, wpx} from '../constants/constants';
 
 const ChatScreen = ({navigation, route}) => {
   const {chatID} = route.params;
@@ -70,7 +70,7 @@ const ChatScreen = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerStyles}>
-        <Text style={styles.headerTextStyles}>Header</Text>
+        <Text style={styles.headerTextStyles}>{receiver}</Text>
       </View>
       <FlatList
         inverted
@@ -118,18 +118,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: 'black',
   },
 
   headerStyles: {
     height: 60,
     width: '100%',
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white',
   },
 
   headerTextStyles: {
     fontSize: 24,
+    color: 'white',
   },
 
   chatBubbleContainerStyles: {
@@ -142,7 +146,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     marginHorizontal: wpx(5),
-    backgroundColor: 'teal',
+    backgroundColor: '#E35F24',
   },
 
   messageTextStyles: {
@@ -161,13 +165,14 @@ const styles = StyleSheet.create({
     flex: 0.9,
     borderRadius: 15,
     minHeight: 50,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'rgba(175, 175, 175, 0.8)',
     paddingHorizontal: 15,
   },
 
   sendButtonStyles: {
-    color: 'blue',
-    fontSize: 16,
+    color: '#E35F24',
+    fontSize: nf(18),
+    fontWeight: 'bold',
   },
 });
 
